@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Condensed&display=swap" rel="stylesheet" />
+    <link href="windows.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/ba2000386c.js"></script>
+    <link href="windows_10.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container" id="lode" >
+        <div class="logo"><i class="fab fa-windows" id="windows"></i></div>
+        <div class="loader">
+        <div class="bg"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        </div>
+    </div>
+
+    <section id="fondo"></section>
+        <section id="lode-2" style="display: none; background-color: #0068b4;">
+            <div id="dotGrupo">
+                <div class="dotContenedor">
+                    <div class="dot"></div>
+                </div>
+                <div class="dotContenedor">
+                    <div class="dot"></div>
+                </div>
+                <div class="dotContenedor">
+                    <div class="dot"></div>
+                </div>
+                <div class="dotContenedor">
+                    <div class="dot"></div>
+                </div>
+                <div class="dotContenedor">
+                    <div class="dot"></div>
+                </div>
+                <div id="izqParte"></div>
+                <div id="derParte"></div>
+            </div>
+            <div id="textoAbajo">
+                <p>sithum Loading ...</p>
+            </div>
+        </section>
+        
+
+
+    <!-- js script -->
+    <script>
+        var counter = 4;
+        // get the body element
+        const body = document.body;
+
+        // change the background color to blue
+        
+
+        
+
+        setInterval(function() {
+            counter--;
+            if(counter < 0) {
+                document.getElementById("lode").style.display = "none";
+                body.style.backgroundColor = 'blue';
+                document.getElementById("lode-2").style.display = "block";
+                document.getElementById("Footer").style.display = "block";
+                
+            } 
+            
+
+        }, 1000);
+
+        
+        var myDots = document.getElementsByClassName("dotContenedor");
+        var izqParte = document.getElementById("izqParte");
+        var derParte = document.getElementById("derParte");
+
+        setTimeout(function () {
+            document.getElementById("dotGrupo").style.opacity = 1;
+
+            setInterval(bottomFunc, 1500);
+            setInterval(animations, 6000);
+            animations();
+            var amount = 0;
+
+            function bottomFunc() {
+                amount++;
+                var result = "";
+
+                for (let i = 0; i < (amount % 3) + 1; i++) {
+                    result += ".";
+                }
+
+                document.querySelectorAll("#textoAbajo > p")[0].innerHTML = "Welcome" + result;
+            }
+
+            function animations() {
+                izqParte.style.opacity = 1;
+                derParte.style.opacity = 1;
+
+                derParte.style.animation = "none";
+                derParte.offsetHeight;
+                derParte.style.animation = null;
+                derParte.style.animation = "4s derParteAni 1.6s step-start";
+
+                izqParte.style.animation = "none";
+                izqParte.offsetHeight;
+                izqParte.style.animation = null;
+                izqParte.style.animation = "3.8s izqParteAni 0s step-start";
+
+                for (let j = 0; j < myDots.length; j++) {
+                    myDots[j].style.animation = "none";
+                    myDots[j].offsetHeight;
+                    myDots[j].style.animation = null;
+                    myDots[j].style.animation = "2s AllCirculos " + j * 0.375 + "s cubic-bezier(0.2,0.95,0.75,0.2), 2s AllCirculos2 " + (2 + j * 0.375) + "s cubic-bezier(0.2,0.65,0.75,0.2) forwards";
+                }
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
